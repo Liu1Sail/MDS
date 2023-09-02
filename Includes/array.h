@@ -44,6 +44,8 @@ namespace MDS {
         {
             if(&otherArray == this)
                 return *this;
+
+            //代码服用 不是最有效率的
             auto copy = otherArray;
             std::swap(*this , copy);
             return *this;

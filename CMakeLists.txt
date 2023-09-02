@@ -3,5 +3,4 @@ project(MDS)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(MDS Includes/array.cpp
-        Includes/array.cpp)
+add_library(MDS Includes/array.cpp Includes/list.cpp)
