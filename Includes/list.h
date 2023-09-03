@@ -130,7 +130,7 @@ namespace MDS {
         }
 
         ~list(){
-            erase(begin() , end());
+            clear();
             delete m_pHead;
             delete m_pTail;
         }
@@ -141,7 +141,7 @@ namespace MDS {
             m_uSize++;
         }
         void push_back(T&& object){
-            auto p = new node(new T(std::move(object)),m_pTail->m_pPrev,m_pTail);
+            auto p = new node(new T( std::move(object) ),m_pTail->m_pPrev,m_pTail);
             p->m_pPrev->m_pNext = p;
             m_pTail ->m_pPrev = p;
             m_uSize++;
@@ -162,16 +162,25 @@ namespace MDS {
             return const_iterator(m_pTail);
         }
 
+        iterator find(const T & obj){
+            for(auto it = begin() ; it != end() ; it++){
+                if(*it == obj){
+                    return it;
+                }
+            }
+            return end();
+        }
+
 
         iterator insert(const iterator& itr,const T & obj){
-            auto p = new node(new T(itr),itr.m_pNode->m_pPrev , itr.m_pNode);
+            auto p = new node(new T(obj),itr.m_pNode->m_pPrev , itr.m_pNode);
             p->m_pPrev->m_pNext = p;
             itr.m_pNode->m_pPrev = p;
             m_uSize++;
             return iterator(p);
         }
         iterator insert(const iterator& itr,T && obj){
-            auto p = new node(new T(std::move(itr)),itr.m_pNode->m_pPrev , itr.m_pNode);
+            auto p = new node( new T(std::move(obj)),itr.m_pNode->m_pPrev , itr.m_pNode);
             p->m_pPrev->m_pNext = p;
             itr.m_pNode->m_pPrev = p;
             m_uSize++;
@@ -189,13 +198,16 @@ namespace MDS {
             return tmp;
         }
 
-        iterator erase(const iterator &from , const iterator& to)
-        {
+        iterator erase(const iterator &from , const iterator& to){
             for(auto it = from ;it!=to;)
             {
                 it = erase(it);
             }
             return to;
+        }
+
+        void clear(){
+            erase(begin() , end());
         }
 
 
