@@ -3,4 +3,5 @@ project(MDS)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(MDS Includes/array.cpp Includes/list.cpp)
+add_library(MDS Includes/array.cpp Includes/list.cpp
+        Includes/sort.h)
