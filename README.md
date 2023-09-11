@@ -33,7 +33,7 @@ margin-right: 20px
 </div>
 
 <p class="ready">array</p>
-<p class ="coding">list</p>
+<p class ="ready">list</p>
 <p class = "notReady">stack</p>
 <p class = "notReady">queue</p>
 <p class = "notReady">deque</p>

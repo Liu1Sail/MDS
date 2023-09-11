@@ -29,12 +29,11 @@ namespace MDS {
         array(array &&initArray):m_uCapacity(initArray.m_uCapacity),m_uSize(initArray.m_uSize),m_pObjects(initArray.m_pObjects) {
             initArray.m_pObjects = nullptr;
         }
-        explicit array(const std::initializer_list<T>& initList)
+        array(const std::initializer_list<T>& initList):m_uCapacity(initList.size()),m_uSize(0),m_pObjects(new T[m_uCapacity])
         {
-            m_pObjects = new T[m_uCapacity];
-            for(int i = 0;i<m_uSize;++i)
+            for(const auto &ele : initList)
             {
-                m_pObjects[i] = initList[i];
+                this->push_back(ele);
             }
         }
         ~array(){
