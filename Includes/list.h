@@ -260,6 +260,16 @@ namespace MDS
             erase(begin(), end());
         }
 
+        void reverse()
+        {
+            std::swap(m_pHead,m_pTail);
+            auto it = m_pHead;
+            while(it)
+            {
+                std::swap(it->m_pNext,it->m_pPrev);
+                it = it->m_pNext;
+            }
+        }
 
     };//list
 
